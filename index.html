@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adequate Light — Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inconsolata:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1714;
+      --paper: #f5f2ec;
+      --warm-mid: #c8b99a;
+      --faint: #e8e3da;
+      --ghost: #d4cfc6;
+      --accent: #7a6a52;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --mono: 'Inconsolata', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.5;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.6rem 3rem;
+      background: linear-gradient(to bottom, var(--paper) 70%, transparent);
+    }
+
+    .site-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.2rem;
+      align-items: baseline;
+    }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.04) brightness(0.97);
+      transition: transform 8s ease;
+    }
+
+    .hero-image-wrap:hover img { transform: scale(1.025); }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5rem 4rem 4rem 4.5rem;
+      background: var(--paper);
+    }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--accent);
+      max-width: 32ch;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ghost);
+      padding-bottom: 0.3rem;
+      transition: border-color 0.2s, gap 0.2s;
+    }
+
+    .hero-cta:hover { border-color: var(--ink); gap: 1.2rem; }
+    .hero-cta::after { content: '→'; }
+
+    /* ── STRIP DIVIDER ── */
+    .strip {
+      display: flex;
+      align-items: center;
+      padding: 0 3rem;
+      height: 2.8rem;
+      background: var(--ink);
+      gap: 3rem;
+      overflow: hidden;
+    }
+
+    .strip span {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .strip-line {
+      flex: 1;
+      height: 1px;
+      background: #3a3530;
+    }
+
+    /* ── SERIES SECTION ── */
+    .series {
+      padding: 6rem 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      border-bottom: 1px solid var(--ghost);
+      padding-bottom: 1rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      gap: 1.2rem;
+    }
+
+    .series-item {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .series-item:nth-child(1) { grid-column: 1 / 6; grid-row: 1; }
+    .series-item:nth-child(2) { grid-column: 6 / 9; grid-row: 1; }
+    .series-item:nth-child(3) { grid-column: 9 / 13; grid-row: 1; }
+    .series-item:nth-child(4) { grid-column: 1 / 5; grid-row: 2; }
+    .series-item:nth-child(5) { grid-column: 5 / 10; grid-row: 2; }
+    .series-item:nth-child(6) { grid-column: 10 / 13; grid-row: 2; }
+
+    .series-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%) contrast(1.05);
+      transition: filter 0.5s ease, transform 0.6s ease;
+    }
+
+    .series-item:hover img {
+      filter: grayscale(0%) contrast(1.08);
+      transform: scale(1.03);
+    }
+
+    .series-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.2rem 1rem;
+      background: linear-gradient(transparent, rgba(26,23,20,0.75));
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .series-item:hover .series-caption { transform: translateY(0); }
+
+    .series-caption h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--paper);
+      letter-spacing: 0.05em;
+    }
+
+    .series-caption p {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-top: 0.2rem;
+    }
+
+    /* ── PLACEHOLDER IMAGES (SVG) ── */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .ph-1 { background: #2a2520; color: #6a5d4a; }
+    .ph-2 { background: #1e2528; color: #4a6068; }
+    .ph-3 { background: #252220; color: #5a5048; }
+    .ph-4 { background: #201e1b; color: #605848; }
+    .ph-5 { background: #232a2c; color: #4a6070; }
+    .ph-6 { background: #28231e; color: #6a5844; }
+
+    .ph-hero { background: #1a1814; color: #4a4238; min-height: 60vh; }
+
+    .ph-icon {
+      width: 32px; height: 32px;
+      opacity: 0.4;
+    }
+
+    /* ── ABOUT BAND ── */
+    .about-band {
+      background: var(--ink);
+      color: var(--paper);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .about-image {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .about-image .img-placeholder {
+      min-height: 420px;
+      background: #241f1a;
+      color: #5a5040;
+    }
+
+    .about-content {
+      padding: 5rem 4.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-label {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 1.6rem;
+    }
+
+    .about-content h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.25;
+      margin-bottom: 1.8rem;
+      color: var(--paper);
+    }
+
+    .about-content h2 em {
+      font-style: italic;
+      color: var(--warm-mid);
+    }
+
+    .about-content p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #b0a898;
+      margin-bottom: 1.2rem;
+      max-width: 42ch;
+    }
+
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      text-decoration: none;
+      border-bottom: 1px solid #3a3428;
+      padding-bottom: 0.3rem;
+      margin-top: 1rem;
+      transition: color 0.2s, border-color 0.2s, gap 0.2s;
+    }
+
+    .about-link:hover { color: var(--paper); border-color: var(--warm-mid); gap: 1.2rem; }
+    .about-link::after { content: '→'; }
+
+    /* ── LATEST WRITING ── */
+    .writing {
+      padding: 6rem 3rem;
+      background: var(--faint);
+    }
+
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .writing-item {
+      border-top: 1px solid var(--ghost);
+      padding-top: 1.5rem;
+    }
+
+    .writing-date {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      margin-bottom: 0.8rem;
+    }
+
+    .writing-item h3 {
+      font-size: 1.25rem;
+      font-weight: 300;
+      line-height: 1.35;
+      margin-bottom: 0.8rem;
+    }
+
+    .writing-item h3 em { font-style: italic; }
+
+    .writing-item p {
+      font-size: 0.92rem;
+      color: var(--accent);
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    .writing-link {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ghost);
+      padding-bottom: 0.2rem;
+      transition: border-color 0.2s;
+    }
+
+    .writing-link:hover { border-color: var(--ink); }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 5rem 3rem;
+      display: flex;
+      align-items: center;
+      gap: 6rem;
+      border-top: 1px solid var(--ghost);
+    }
+
+    .contact-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+      flex-shrink: 0;
+    }
+
+    .contact-content h2 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-content h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-content p {
+      font-size: 1rem;
+      color: var(--accent);
+      line-height: 1.8;
+      max-width: 48ch;
+      margin-bottom: 2rem;
+    }
+
+    .contact-email {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ghost);
+      padding-bottom: 0.3rem;
+      transition: border-color 0.2s;
+    }
+
+    .contact-email:hover { border-color: var(--ink); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #6a6058;
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    footer nav {
+      gap: 1.8rem;
+    }
+
+    footer nav a {
+      color: #6a6058;
+      transition: color 0.2s;
+    }
+
+    footer nav a:hover { color: var(--warm-mid); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(20,18,15,0.96);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-inner {
+      max-width: 80vw;
+      max-height: 85vh;
+      text-align: center;
+    }
+
+    .lightbox-inner img,
+    .lightbox-inner .img-placeholder {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem; right: 2.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-mid);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover { color: var(--paper); }
+
+    .lightbox-caption {
+      margin-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6a6058;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      header { padding: 1.2rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-image-wrap { min-height: 50vw; }
+      .hero-text { padding: 3rem 1.5rem 2.5rem; }
+      .series-grid { grid-template-columns: 1fr 1fr; }
+      .series-item:nth-child(n) { grid-column: auto; grid-row: auto; }
+      .about-band { grid-template-columns: 1fr; }
+      .about-image { min-height: 280px; }
+      .about-content { padding: 3rem 1.5rem; }
+      .writing-grid { grid-template-columns: 1fr; }
+      .contact { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .contact-label { writing-mode: horizontal-tb; transform: none; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .series, .writing { padding: 4rem 1.5rem; }
+      .contact { padding: 4rem 1.5rem; }
+      .strip { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a class="site-title" href="#">Adequate Light</a>
+    <nav>
+      <a href="#series">Work</a>
+      <a href="#about">About</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-image-wrap">
+      <!-- Replace src with your hero image -->
+      <div class="img-placeholder ph-hero">
+        <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        </svg>
+        <span>Your Image Here</span>
+      </div>
+    </div>
+    <div class="hero-text">
+      <p class="hero-label">Drew — Scotland</p>
+      <h1 class="hero-title">To see<br>is to <em>wait</em><br>in light.</h1>
+      <p class="hero-desc">Documentary and street photography rooted in presence, impermanence, and the nature of looking.</p>
+      <a href="#series" class="hero-cta">View the work</a>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <span>Leica M10-P</span>
+    <div class="strip-line"></div>
+    <span>Scotland</span>
+    <div class="strip-line"></div>
+    <span>35mm · 50mm</span>
+    <div class="strip-line"></div>
+    <span>Adequate Light</span>
+    <div class="strip-line"></div>
+    <span>Est. 2025</span>
+  </div>
+
+  <!-- SERIES -->
+  <section class="series" id="series">
+    <div class="section-header fade-up">
+      <span class="section-label">01 — Selected Work</span>
+      <h2 class="section-title">Series</h2>
+    </div>
+
+    <div class="series-grid">
+
+      <div class="series-item fade-up" onclick="openLightbox('Threshold', 'Edinburgh · 2025')">
+        <div class="img-placeholder ph-1">
+          <!-- Replace with: <img src="images/series-1.jpg" alt="Threshold series"> -->
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span>Upload image</span>
+        </div>
+        <div class="series-caption">
+          <h3>Threshold</h3>
+          <p>Edinburgh · 2025</p>
+        </div>
+      </div>
+
+      <div class="series-item fade-up" onclick="openLightbox('Still Water', 'Highlands · 2025')">
+        <div class="img-placeholder ph-2">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span>Upload image</span>
+        </div>
+        <div class="series-caption">
+          <h3>Still Water</h3>
+          <p>Highlands · 2025</p>
+        </div>
+      </div>
+
+      <div class="series-item fade-up" onclick="openLightbox('Market Days', 'Glasgow · 2025')">
+        <div class="img-placeholder ph-3">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span>Upload image</span>
+        </div>
+        <div class="series-caption">
+          <h3>Market Days</h3>
+          <p>Glasgow · 2025</p>
+        </div>
+      </div>
+
+      <div class="series-item fade-up" onclick="openLightbox('The Long Light', 'Fife · 2025')">
+        <div class="img-placeholder ph-4">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span>Upload image</span>
+        </div>
+        <div class="series-caption">
+          <h3>The Long Light</h3>
+          <p>Fife · 2025</p>
+        </div>
+      </div>
+
+      <div class="series-item fade-up" onclick="openLightbox('Dissolve', 'Edinburgh · 2024')">
+        <div class="img-placeholder ph-5">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span>Upload image</span>
+        </div>
+        <div class="series-caption">
+          <h3>Dissolve</h3>
+          <p>Edinburgh · 2024</p>
+        </div>
+      </div>
+
+      <div class="series-item fade-up" onclick="openLightbox('Passing Through', 'Borders · 2024')">
+        <div class="img-placeholder ph-6">
+          <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span>Upload image</span>
+        </div>
+        <div class="series-caption">
+          <h3>Passing Through</h3>
+          <p>Borders · 2024</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-band" id="about">
+    <div class="about-image">
+      <div class="img-placeholder ph-hero" style="min-height:420px; background:#221d18;">
+        <!-- Replace with: <img src="images/portrait.jpg" alt="Portrait"> -->
+        <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Portrait</span>
+      </div>
+    </div>
+    <div class="about-content fade-up">
+      <p class="about-label">02 — About</p>
+      <h2>Looking as a<br><em>practice</em> of being.</h2>
+      <p>I'm a photographer based in Scotland, working in street and documentary traditions. My practice is shaped by questions of impermanence, presence, and what it means to genuinely see something.</p>
+      <p>Adequate Light is both the name of this project and a description of the conditions I work in — not the golden hour, but the ordinary light of ordinary moments.</p>
+      <a href="#contact" class="about-link">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- WRITING -->
+  <section class="writing" id="writing">
+    <div class="section-header fade-up">
+      <span class="section-label">03 — Words</span>
+      <h2 class="section-title">Recent Writing</h2>
+    </div>
+
+    <div class="writing-grid">
+      <div class="writing-item fade-up">
+        <p class="writing-date">March 2025</p>
+        <h3>On Berger, <em>Photographs of Agony</em>, and the ethics of looking</h3>
+        <p>What does it mean to bear witness? And what does the photograph ask of us in return?</p>
+        <a href="#" class="writing-link">Read on Substack</a>
+      </div>
+
+      <div class="writing-item fade-up">
+        <p class="writing-date">February 2025</p>
+        <h3>Zone focusing as a <em>meditation</em></h3>
+        <p>Prefocusing is not a shortcut. It is a commitment to presence before the moment arrives.</p>
+        <a href="#" class="writing-link">Read on Substack</a>
+      </div>
+
+      <div class="writing-item fade-up">
+        <p class="writing-date">January 2025</p>
+        <h3>The M10-P and the <em>discipline of quiet</em></h3>
+        <p>On choosing a camera that cannot hide behind burst modes, computational processing, or noise.</p>
+        <a href="#" class="writing-link">Read on Substack</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <p class="contact-label">04 — Contact</p>
+    <div class="contact-content fade-up">
+      <h2>Let's make<br><em>something</em> together.</h2>
+      <p>Whether you're interested in the work, want to discuss a project, or just want to talk about photography — I'd be glad to hear from you.</p>
+      <a href="mailto:drew@drewdeath.com" class="contact-email">drew@drewdeath.com</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Adequate Light — All rights reserved</p>
+    <nav>
+      <a href="#">Instagram</a>
+      <a href="#">Substack</a>
+      <a href="#series">Work</a>
+    </nav>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+      <div class="img-placeholder ph-1" id="lightbox-img" style="width:60vw;height:60vh;min-height:unset;">
+        <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      </div>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Lightbox
+    function openLightbox(title, location) {
+      document.getElementById('lightbox-caption').textContent = title + ' — ' + location;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
