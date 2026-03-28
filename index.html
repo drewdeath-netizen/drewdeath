@@ -135,16 +135,19 @@
     }
     .entry-bg {
       position: absolute; inset: 0;
-      background: linear-gradient(160deg, #1a1714 0%, #0d0c0b 60%);
+      background: #0d0c0b;
     }
-    .entry-bg::before {
-      content: ''; position: absolute; top: 0; right: 18%; width: 1px; height: 100%;
-      background: linear-gradient(to bottom, transparent, var(--rule) 30%, var(--rule) 70%, transparent);
+    .entry-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      opacity: 0.55;
+      filter: grayscale(20%) contrast(1.05);
     }
     .entry-bg::after {
-      content: ''; position: absolute; left: 0; bottom: 35%; width: 100%; height: 1px;
-      background: linear-gradient(to right, transparent, var(--rule) 20%, var(--rule) 82%, transparent);
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,12,11,0.92) 0%, rgba(13,12,11,0.2) 60%, rgba(13,12,11,0.1) 100%);
     }
+    
     .entry-content { position: relative; z-index: 2; }
     .entry-index {
       font-family: var(--mono); font-size: 0.6rem;
@@ -370,7 +373,9 @@
 
   <!-- HERO -->
   <section class="entry" id="home">
-    <div class="entry-bg"></div>
+    <div class="entry-bg">
+      <img src="images/XP3D0528.jpg" alt="Drew Death — Photography">
+    </div>
     <div class="entry-content">
       <p class="entry-index">Documentary &amp; Street — Scotland — 2024–Present</p>
       <h1 class="entry-headline">Drew<br><em>Death</em></h1>
@@ -401,15 +406,15 @@
       <div class="seq-number">01–06</div>
       <div class="seq-col">
         <div class="seq-frame reveal" onclick="openLb('Glasgow, 2024','001','images/L1020287.jpg')">
-          <img src="images/L1020287.jpg" alt="Glasgow street" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
+          <img src="images/L1020287.jpg" alt="Glasgow" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
           <div class="seq-overlay"><span class="seq-overlay-title">Glasgow, 2024</span><span class="seq-overlay-num">001 / L1020287</span></div>
         </div>
         <div class="seq-frame wide reveal" onclick="openLb('Untitled, 2024','002','images/DSCF3972.jpg')">
-          <img src="images/DSCF3972.jpg" alt="Vine wreath and wine glasses" style="width:100%;height:100%;min-height:180px;object-fit:cover;display:block;">
+          <img src="images/DSCF3972.jpg" alt="Vine wreath" style="width:100%;height:100%;min-height:180px;object-fit:cover;display:block;">
           <div class="seq-overlay"><span class="seq-overlay-title">Untitled, 2024</span><span class="seq-overlay-num">002 / DSCF3972</span></div>
         </div>
         <div class="seq-frame reveal" onclick="openLb('Edinburgh, 2024','003','images/L1020516.jpg')">
-          <img src="images/L1020516.jpg" alt="Edsel dog ornament, Edinburgh" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
+          <img src="images/L1020516.jpg" alt="Edinburgh Edsel" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
           <div class="seq-overlay"><span class="seq-overlay-title">Edinburgh, 2024</span><span class="seq-overlay-num">003 / L1020516</span></div>
         </div>
       </div>
@@ -419,11 +424,11 @@
           <div class="seq-overlay"><span class="seq-overlay-title">Ferry Deck, 2024</span><span class="seq-overlay-num">004 / XP3D0696</span></div>
         </div>
         <div class="seq-frame reveal" onclick="openLb('Untitled, 2023','005','images/R0001247.jpg')">
-          <img src="images/R0001247.jpg" alt="Butcher, back turned" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
+          <img src="images/R0001247.jpg" alt="Butcher" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
           <div class="seq-overlay"><span class="seq-overlay-title">Untitled, 2023</span><span class="seq-overlay-num">005 / R0001247</span></div>
         </div>
         <div class="seq-frame reveal" onclick="openLb('Scotland, 2024','006','images/R0001437.jpg')">
-          <img src="images/R0001437.jpg" alt="Logged timber, Scotland" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
+          <img src="images/R0001437.jpg" alt="Logged timber Scotland" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
           <div class="seq-overlay"><span class="seq-overlay-title">Scotland, 2024</span><span class="seq-overlay-num">006 / R0001437</span></div>
         </div>
       </div>
@@ -440,7 +445,7 @@
       <h2>Photography as the<br><em>practice of presence.</em></h2>
       <p>My work begins with the question of what it means to actually see something — not to observe, to record, or to aestheticize, but to be present enough that <strong>the moment leaves a mark</strong> before the mind names it.</p>
       <p>Working primarily in Scotland in documentary and street traditions, I'm drawn to the ordinary thresholds of daily life: the light between actions, faces in transit, landscapes that ask nothing of you. The Leica M system is not a stylistic choice so much as a <strong>commitment to slowness</strong> — to prefocus, zone, and wait rather than hunt with burst fire.</p>
-      <p>Alongside this work, <em>Adequate Light</em> explores the same questions in writing — through Buddhism, philosophy of perception, and the ethics of witness. The photographs and the words are the same inquiry by different means.</p>
+      <p>Alongside this work, <em>Adequate Light</em> explores the same questions in writing — through mindfulness, philosophy of perception, and the ethics of witness. The photographs and the words are the same inquiry by different means.</p>
     </div>
   </section>
 
@@ -453,18 +458,18 @@
     <div class="cv-grid">
       <div class="cv-col reveal">
         <h3>Education</h3>
-        <div class="cv-item"><span class="cv-year">2025–</span><div class="cv-detail"><strong>MFA Photography (Candidate)</strong><span>Edinburgh College of Art</span></div></div>
+        <div class="cv-item"><span class="cv-year">2027–</span><div class="cv-detail"><strong>MFA Photography (Candidate)</strong><span>TBA</span></div></div>
         <div class="cv-item"><span class="cv-year">Prior</span><div class="cv-detail"><strong>B.S. Economics</strong><span>Portland, Oregon</span></div></div>
       </div>
       <div class="cv-col reveal">
         <h3>Exhibitions</h3>
-        <div class="cv-item"><span class="cv-year">2025</span><div class="cv-detail"><strong>Your Exhibition Title</strong><span>Venue, Edinburgh</span></div></div>
-        <div class="cv-item"><span class="cv-year">2025</span><div class="cv-detail"><strong>Group Show</strong><span>Venue, Glasgow</span></div></div>
+		<div class="cv-item"><span class="cv-year">2026</span><div class="cv-detail"><strong>Perthshire Arts</strong><span>Somewhere, Perth</span></div></div>
+		<div class="cv-item"><span class="cv-year">2022</span><div class="cv-detail"><strong>Portland Street Collective</strong><span>Online, Portland Oregon</span></div></div>
       </div>
       <div class="cv-col reveal">
         <h3>Publications</h3>
         <div class="cv-item"><span class="cv-year">2025</span><div class="cv-detail"><strong>Adequate Light</strong><span>Substack — Photography &amp; Philosophy</span></div></div>
-        <div class="cv-item"><span class="cv-year">2025</span><div class="cv-detail"><strong>Publication / Feature</strong><span>Update as work is published</span></div></div>
+        <div class="cv-item"><span class="cv-year">2026</span><div class="cv-detail"><strong>TBA</strong><span>Coming Soon</span></div></div>
       </div>
     </div>
   </section>
@@ -476,36 +481,36 @@
   <section id="adequate-light">
     <div class="al-intro">
       <div class="reveal">
-        <p class="al-eyebrow">A Project by Drew Death</p>
+        <p class="al-eyebrow">A Project Series by Drew Death</p>
         <h2 class="al-title">Adequate<br><em>Light</em></h2>
       </div>
       <div class="reveal">
         <div class="al-rule"></div>
-        <p class="al-desc">A Substack at the intersection of photography and philosophy. Writing on Buddhism, impermanence, presence, and the nature of seeing — the same questions the photographs ask, answered in words.</p>
+        <p class="al-desc">Photoessays at the intersection of photography and philosophy, although this may change, as all things do. Writing on mindfulness, impermanence, presence, and the nature of seeing — the same questions the photographs ask, answered in words.</p>
         <p class="al-subtext">Not the golden hour. The ordinary light of ordinary moments, and what it asks of us to look at them honestly.</p>
       </div>
     </div>
 
     <div class="al-writing">
       <div class="al-writing-head reveal">
-        <span>Recent Writing</span>
+        <span>Upcoming Writing</span>
         <h3>From the Archive</h3>
       </div>
       <div class="al-grid">
         <div class="al-item reveal">
-          <p class="al-date">March 2025</p>
+          <p class="al-date">March 2026</p>
           <h4>On Berger, <em>Photographs of Agony</em>, and the ethics of looking</h4>
           <p>What does it mean to bear witness? And what does the photograph ask of us in return?</p>
           <a href="#" class="al-link">Read on Substack</a>
         </div>
         <div class="al-item reveal">
-          <p class="al-date">February 2025</p>
+          <p class="al-date">April 2026</p>
           <h4>Zone focusing as a <em>meditation</em></h4>
           <p>Prefocusing is not a shortcut. It is a commitment to presence before the moment arrives.</p>
           <a href="#" class="al-link">Read on Substack</a>
         </div>
         <div class="al-item reveal">
-          <p class="al-date">January 2025</p>
+          <p class="al-date">May 2026</p>
           <h4>The M10-P and the <em>discipline of quiet</em></h4>
           <p>On choosing a camera that cannot hide behind burst modes, computational processing, or noise.</p>
           <a href="#" class="al-link">Read on Substack</a>
@@ -514,8 +519,8 @@
     </div>
 
     <div class="al-cta reveal">
-      <p>The full archive lives on Substack. New essays on photography, philosophy, and the <em>practice of seeing</em> — published when there's something worth saying.</p>
-      <a href="https://adequatelight.substack.com" target="_blank" class="al-cta-btn">Read Adequate Light</a>
+      <p>The full archive lives on Drew Death's Substack. New essays on photography, philosophy, and the <em>practice of seeing</em> — published when there's something worth saying.</p>
+      <a href="https://drewdeath.substack.com" target="_blank" class="al-cta-btn">Read Adequate Light</a>
     </div>
 
     <div style="height:3rem;"></div>
@@ -532,18 +537,18 @@
     <div class="contact-right reveal">
       <p>Available for editorial commissions, exhibition proposals, and residency collaborations. For MFA and institutional enquiries, a full portfolio PDF is available on request.</p>
       <div class="contact-items">
-        <div class="contact-item"><span class="contact-item-label">Email</span><a href="/cdn-cgi/l/email-protection#e88c9a8d9fa88c9a8d9f8c8d899c80c68b8785"><span class="__cf_email__" data-cfemail="f99d8b9c8eb99d8b9c8e9d9c988d91d79a9694">[email&#160;protected]</span></a></div>
-        <div class="contact-item"><span class="contact-item-label">Instagram</span><a href="#" target="_blank">@drewdeath</a></div>
-        <div class="contact-item"><span class="contact-item-label">Writing</span><a href="https://adequatelight.substack.com" target="_blank">Adequate Light on Substack</a></div>
+        <div class="contact-item"><span class="contact-item-label">Email</span><a href="/cdn-cgi/l/email-protection#ee8a9c8b99ae8a9c8b998a8b8f9a86c08d8183"><span class="__cf_email__" data-cfemail="9cf8eef9ebdcf8eef9ebf8f9fde8f4b2fff3f1">[email&#160;protected]</span></a></div>
+        <div class="contact-item"><span class="contact-item-label">Instagram</span><a href="https://www.instagram.com/drew.death/" target="_blank">@drew.death</a></div>
+        <div class="contact-item"><span class="contact-item-label">Writing</span><a href="https://drewdeath.substack.com" target="_blank">Adequate Light on Substack</a></div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Drew Death — All rights reserved</p>
+    <p>© 2026 Drew Death — All rights reserved</p>
     <div class="footer-links">
-      <a href="https://adequatelight.substack.com" target="_blank">Adequate Light</a>
+      <a href="https://drewdeath.substack.com" target="_blank">Adequate Light</a>
       <a href="#work">Work</a>
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
@@ -565,8 +570,8 @@
   </div>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    window.addEventListener('load', () => {
-      setTimeout(() => document.getElementById('loader').classList.add('done'), 600);
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('done'), 400);
     });
 
     // Scroll reveals
@@ -593,10 +598,15 @@
       document.getElementById('lb-title').textContent = title;
       document.getElementById('lb-num').textContent = num + ' — Drew Death';
       const frame = document.getElementById('lb-frame');
-      if (src) {
-        frame.innerHTML = '<img src="' + src + '" style="max-width:100%;max-height:75vh;object-fit:contain;display:block;">';
-      }
+      if (src) frame.innerHTML = '<img src="' + src + '" style="max-width:100%;max-height:75vh;object-fit:contain;display:block;">';
       document.getElementById('lb').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-    func
+    function closeLb() {
+      document.getElementById('lb').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  </script>
+</body>
+</html>
