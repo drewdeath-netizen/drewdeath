@@ -139,7 +139,7 @@
     }
     .entry-bg img {
       width: 100%; height: 100%;
-      object-fit: cover; display: block;
+      object-fit: cover; object-position: left center; display: block;
       opacity: 0.55;
       filter: grayscale(20%) contrast(1.05);
     }
@@ -332,24 +332,111 @@
     .lb-close { position: absolute; top: 2rem; right: 3rem; background: none; border: none; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); cursor: pointer; transition: color 0.2s; }
     .lb-close:hover { color: var(--bone); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      header { padding: 1.2rem 1.5rem; }
-      .entry, .work, .statement, .cv-section, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .h-rule, .zone-label { left: 1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
-      .al-intro, .al-writing { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .al-cta { margin-left: 1.5rem; margin-right: 1.5rem; padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; }
-      footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-      .work-sequence { grid-template-columns: 1fr 1fr; }
-      .seq-number, .seq-info { display: none; }
-      .statement { grid-template-columns: 1fr; gap: 2rem; }
-      .cv-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .contact { grid-template-columns: 1fr; gap: 3rem; }
-      .al-intro { grid-template-columns: 1fr; gap: 2rem; }
-      .al-grid { grid-template-columns: 1fr; }
-      nav { gap: 1.5rem; }
-      nav a { font-size: 0.6rem; }
+    /* ── HAMBURGER BUTTON ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer; padding: 4px;
     }
+    .nav-toggle span {
+      display: block; width: 22px; height: 1px;
+      background: var(--bone); transition: all 0.3s ease;
+    }
+    header.warm-hd .nav-toggle span { background: #1a1714; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+
+      /* Header & nav */
+      header { padding: 1.2rem 1.5rem; align-items: center; }
+      .logo-name { font-size: 0.95rem; }
+      .logo-sub { font-size: 0.52rem; }
+      .nav-toggle { display: flex; }
+
+      nav {
+        display: none;
+        position: fixed; inset: 0; top: 0;
+        background: var(--void);
+        flex-direction: column; align-items: center; justify-content: center;
+        gap: 2.5rem; z-index: 99;
+      }
+      nav.open { display: flex; }
+      nav a { font-size: 1.1rem; letter-spacing: 0.2em; color: var(--off); }
+      nav a:hover { color: var(--bone); }
+      .nav-al { color: var(--ember) !important; }
+
+      /* Hero */
+      .entry { padding: 0 1.5rem 3rem; min-height: 100svh; }
+      .entry-index { margin-bottom: 1.5rem; font-size: 0.55rem; }
+      .entry-headline { font-size: clamp(3rem, 14vw, 5rem); }
+      .entry-meta { flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; }
+      .entry-desc { max-width: 100%; font-size: 0.82rem; }
+      .entry-scroll { display: none; }
+
+      /* H-rule */
+      .h-rule { padding: 0 1.5rem; gap: 1rem; }
+      .h-rule-label:nth-child(3),
+      .h-rule-label:nth-child(5) { display: none; }
+      .h-rule-line:last-child { display: none; }
+
+      /* Work */
+      .work { padding: 3rem 1.5rem; }
+      .work-header { grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 2rem; }
+      .work-meta-stack { text-align: left; }
+      .work-sequence { grid-template-columns: 1fr; gap: 2px; }
+      .seq-number, .seq-info { display: none; }
+      .seq-col { gap: 2px; }
+      .seq-frame img { min-height: 260px !important; }
+      .seq-frame.wide img { min-height: 200px !important; }
+      /* Always show captions on mobile (no hover) */
+      .seq-overlay { opacity: 1; background: linear-gradient(to top, rgba(13,12,11,0.8) 0%, transparent 60%); }
+
+      /* Statement */
+      .statement { padding: 3rem 1.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
+      .statement-body h2 { font-size: clamp(1.5rem, 6vw, 2.2rem); margin-bottom: 1.5rem; }
+      .statement-body p { font-size: 1rem; line-height: 1.8; }
+
+      /* CV */
+      .cv-section { padding: 3rem 1.5rem; }
+      .sec-head { flex-direction: column; gap: 0.5rem; margin-bottom: 2.5rem; }
+      .cv-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      /* Adequate Light zone */
+      .zone-transition { height: 60px; }
+      .zone-label { left: 1.5rem; font-size: 0.52rem; }
+      .zone-exit { height: 50px; }
+      .al-intro { padding: 3rem 1.5rem 2.5rem; grid-template-columns: 1fr; gap: 2rem; }
+      .al-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+      .al-writing { padding: 0 1.5rem 3rem; }
+      .al-writing-head { flex-direction: column; gap: 0.5rem; padding: 1.5rem 0 2rem; }
+      .al-grid { grid-template-columns: 1fr; gap: 0; }
+      .al-item { padding: 1.5rem 0; border-top: 1px solid #d4cfc6; }
+      .al-cta { margin: 0 1.5rem 3rem; padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; }
+      .al-cta p { font-size: 1rem; }
+      .al-cta-btn { width: 100%; justify-content: center; }
+
+      /* Contact */
+      .contact { padding: 3rem 1.5rem; grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-left h2 { font-size: clamp(2rem, 10vw, 3rem); }
+      .contact-item { flex-direction: column; gap: 0.3rem; }
+      .contact-item-label { min-width: unset; }
+      .contact-item a { font-size: 1rem; }
+
+      /* Footer */
+      footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+
+      /* Lightbox full screen on mobile */
+      .lb-frame { width: 95vw; height: 60vh; }
+      .lb-inner { max-width: 95vw; gap: 1rem; }
+      .lb-close { top: 1rem; right: 1rem; }
+      .lb-meta { flex-direction: column; gap: 0.3rem; text-align: center; }
+    }
+
   </style>
 </head>
 <body>
@@ -362,13 +449,16 @@
       <span class="logo-name">Drew Death</span>
       <span class="logo-sub">Photographer — Scotland</span>
     </a>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#statement">Statement</a>
-      <a href="#cv">CV</a>
-      <a href="#adequate-light" class="nav-al">Adequate Light</a>
-      <a href="#contact">Contact</a>
+    <nav id="main-nav">
+      <a href="#work" onclick="closeNav()">Work</a>
+      <a href="#statement" onclick="closeNav()">Statement</a>
+      <a href="#cv" onclick="closeNav()">CV</a>
+      <a href="#adequate-light" class="nav-al" onclick="closeNav()">Adequate Light</a>
+      <a href="#contact" onclick="closeNav()">Contact</a>
     </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <!-- HERO -->
@@ -399,7 +489,7 @@
     <div class="work-header reveal">
       <h2 class="work-series-name"><em>Threshold</em><br>and Other Photographs</h2>
       <div class="work-meta-stack">
-        <p>Series I</p><p>2024–2025</p><p>Scotland</p><p>35mm · 50mm</p>
+        <p>Series I</p><p>2023–2025</p><p>Scotland</p><p>35mm · 50mm</p>
       </div>
     </div>
     <div class="work-sequence">
@@ -413,9 +503,9 @@
           <img src="images/DSCF3972.jpg" alt="Vine wreath" style="width:100%;height:100%;min-height:180px;object-fit:cover;display:block;">
           <div class="seq-overlay"><span class="seq-overlay-title">Untitled, 2024</span><span class="seq-overlay-num">002 / DSCF3972</span></div>
         </div>
-        <div class="seq-frame reveal" onclick="openLb('Edinburgh, 2024','003','images/L1020516.jpg')">
-          <img src="images/L1020516.jpg" alt="Edinburgh Edsel" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
-          <div class="seq-overlay"><span class="seq-overlay-title">Edinburgh, 2024</span><span class="seq-overlay-num">003 / L1020516</span></div>
+        <div class="seq-frame reveal" onclick="openLb('Perth, 2025','003','images/L1020516.jpg')">
+          <img src="images/L1020516.jpg" alt="Perth Edsel" style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
+          <div class="seq-overlay"><span class="seq-overlay-title">Perth, 2025</span><span class="seq-overlay-num">003 / L1020516</span></div>
         </div>
       </div>
       <div class="seq-col">
@@ -463,8 +553,8 @@
       </div>
       <div class="cv-col reveal">
         <h3>Exhibitions</h3>
-		<div class="cv-item"><span class="cv-year">2026</span><div class="cv-detail"><strong>Perthshire Arts</strong><span>Somewhere, Perth</span></div></div>
-		<div class="cv-item"><span class="cv-year">2022</span><div class="cv-detail"><strong>Portland Street Collective</strong><span>Online, Portland Oregon</span></div></div>
+        <div class="cv-item"><span class="cv-year">2026</span><div class="cv-detail"><strong>Festival of the Arts</strong><span>Perth, Scotland</span></div></div>
+        <div class="cv-item"><span class="cv-year">2021</span><div class="cv-detail"><strong>Portland Street Collective</strong><span>Portland, Oregon</span></div></div>
       </div>
       <div class="cv-col reveal">
         <h3>Publications</h3>
@@ -486,7 +576,7 @@
       </div>
       <div class="reveal">
         <div class="al-rule"></div>
-        <p class="al-desc">Photoessays at the intersection of photography and philosophy, although this may change, as all things do. Writing on mindfulness, impermanence, presence, and the nature of seeing — the same questions the photographs ask, answered in words.</p>
+        <p class="al-desc">Photoessays at the intersection of photography and philosophy, although this may change, as all things do. Writing on mindfulness, impermanence, presence, and the practice of seeing — the same questions the photographs ask, answered in words.</p>
         <p class="al-subtext">Not the golden hour. The ordinary light of ordinary moments, and what it asks of us to look at them honestly.</p>
       </div>
     </div>
@@ -498,19 +588,19 @@
       </div>
       <div class="al-grid">
         <div class="al-item reveal">
-          <p class="al-date">March 2026</p>
+          <p class="al-date">April 2026</p>
           <h4>On Berger, <em>Photographs of Agony</em>, and the ethics of looking</h4>
           <p>What does it mean to bear witness? And what does the photograph ask of us in return?</p>
           <a href="#" class="al-link">Read on Substack</a>
         </div>
         <div class="al-item reveal">
-          <p class="al-date">April 2026</p>
+          <p class="al-date">May 2026</p>
           <h4>Zone focusing as a <em>meditation</em></h4>
           <p>Prefocusing is not a shortcut. It is a commitment to presence before the moment arrives.</p>
           <a href="#" class="al-link">Read on Substack</a>
         </div>
         <div class="al-item reveal">
-          <p class="al-date">May 2026</p>
+          <p class="al-date">June 2026</p>
           <h4>The M10-P and the <em>discipline of quiet</em></h4>
           <p>On choosing a camera that cannot hide behind burst modes, computational processing, or noise.</p>
           <a href="#" class="al-link">Read on Substack</a>
@@ -537,7 +627,7 @@
     <div class="contact-right reveal">
       <p>Available for editorial commissions, exhibition proposals, and residency collaborations. For MFA and institutional enquiries, a full portfolio PDF is available on request.</p>
       <div class="contact-items">
-        <div class="contact-item"><span class="contact-item-label">Email</span><a href="/cdn-cgi/l/email-protection#ee8a9c8b99ae8a9c8b998a8b8f9a86c08d8183"><span class="__cf_email__" data-cfemail="9cf8eef9ebdcf8eef9ebf8f9fde8f4b2fff3f1">[email&#160;protected]</span></a></div>
+        <div class="contact-item"><span class="contact-item-label">Email</span><a href="mailto:drew@drewdeath.com" target="_blnak">drew@drewdeath.com</span></a></div>
         <div class="contact-item"><span class="contact-item-label">Instagram</span><a href="https://www.instagram.com/drew.death/" target="_blank">@drew.death</a></div>
         <div class="contact-item"><span class="contact-item-label">Writing</span><a href="https://drewdeath.substack.com" target="_blank">Adequate Light on Substack</a></div>
       </div>
@@ -570,6 +660,19 @@
   </div>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    function toggleNav() {
+      const nav = document.getElementById('main-nav');
+      const btn = document.getElementById('nav-toggle');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeNav() {
+      document.getElementById('main-nav').classList.remove('open');
+      document.getElementById('nav-toggle').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => document.getElementById('loader').classList.add('done'), 400);
     });
