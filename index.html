@@ -19,7 +19,7 @@
       --rule: #2a2622;
       --bone: #e8e2d8;
       --off: #a09890;
-      --dim: #5a5248;
+      --dim: #ffffff;
       --ember: #c8a878;
       --serif: 'Cormorant', Georgia, serif;
       --mono: 'Inconsolata', 'Courier New', monospace;
@@ -77,7 +77,7 @@
 
     .logo { display: flex; flex-direction: column; text-decoration: none; }
     .logo-name {
-      font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
       letter-spacing: 0.25em; text-transform: uppercase; line-height: 1;
       transition: color 0.5s;
     }
@@ -109,7 +109,7 @@
     header.warm-hd nav a::after { background: #1a1714; }
     header.warm-hd nav a:hover { color: #1a1714; }
     .nav-al { color: var(--ember) !important; font-style: italic; }
-    header.warm-hd .nav-al { color: #c8b99a !important; }
+    header.warm-hd .nav-al { color: #000000 !important; }
 
     /* ── UTILS ── */
     .h-rule {
@@ -150,8 +150,8 @@
     
     .entry-content { position: relative; z-index: 2; }
     .entry-index {
-      font-family: var(--mono); font-size: 0.6rem;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--ember);
+      font-family: var(--mono); font-size: 0.9rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember);
       margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
     }
     .entry-headline {
@@ -161,11 +161,11 @@
     }
     .entry-headline em { font-style: italic; color: var(--off); }
     .entry-meta {
-      display: flex; align-items: center; gap: 3rem; margin-top: 3rem;
+      display: flex; align-items: center; gap: 1rem; margin-top: 1rem;
       opacity: 0; animation: fadeUp 1s ease 1.4s forwards;
     }
     .entry-desc {
-      font-size: 0.95rem; color: var(--dim); line-height: 1.8;
+      font-size: 0.9rem; color: var(--dim); line-height: 1.8;
       max-width: 80ch; font-family: var(--mono); letter-spacing: 0.04em;
     }
     .entry-scroll { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-left: auto; }
@@ -191,10 +191,10 @@
     .work-header {
       display: grid; grid-template-columns: 1fr auto;
       align-items: end; margin-bottom: 4rem;
-      padding-bottom: 1.2rem; border-bottom: 1px solid var(--rule);
+      padding-bottom: 1.2rem; border-bottom: 1px solid var(--off);
     }
     .work-series-name { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; }
-    .work-series-name em { font-style: italic; color: var(--off); }
+    .work-series-name em { font-style: italic; color: var(--ember); }
     .work-meta-stack { text-align: right; }
     .work-meta-stack p { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); line-height: 2; }
     .work-sequence { display: grid; grid-template-columns: 60px 1fr 1fr 60px; gap: 1px; background: var(--rule); }
@@ -223,7 +223,7 @@
     .statement-body p strong { font-weight: 400; color: var(--bone); }
 
     /* ── CV ── */
-    .cv-section { padding: 5rem 3.5rem; border-top: 1px solid var(--rule); background: var(--deep); }
+    .cv-section { padding: 5rem 3.5rem; border-top: 1px solid var(--rule); background: var(--void); }
     .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3.5rem; }
     .sec-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); }
     .sec-title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; }
@@ -288,10 +288,10 @@
     .al-cta {
       margin: 0 3.5rem 4rem;
       padding: 3rem 3.5rem;
-      background: #1a1714;
+      background: #f5f2ec;
       display: flex; align-items: center; justify-content: space-between; gap: 3rem;
     }
-    .al-cta p { font-size: 1.1rem; font-weight: 300; color: #e8e2d8; line-height: 1.6; max-width: 50ch; }
+    .al-cta p { font-size: 1.1rem; font-weight: 300; color: #7a6a52; line-height: 1.6; max-width: 50ch; }
     .al-cta p em { font-style: italic; color: #c8a878; }
     .al-cta-btn {
       display: inline-flex; align-items: center; gap: 0.8rem;
@@ -446,7 +446,7 @@
   <header id="hdr" class="dark-hd">
     <a class="logo" href="#">
       <span class="logo-name">Drew Death</span>
-      <span class="logo-sub">Photographer — Scotland</span>
+      <span class="logo-sub">Photographer — Based in Scotland</span>
     </a>
     <nav id="main-nav">
       <a href="#work" onclick="closeNav()">Work</a>
@@ -466,11 +466,11 @@
       <img src="images/XP3D0528.jpg" alt="Drew Death — Photography">
     </div>
     <div class="entry-content">
-      <p class="entry-index">Documentary &amp; Street — Based in Scotland</p>
+      <p class="entry-index">Documentary &amp; Street Photography</p>
       <h1 class="entry-headline">Drew<br><em>Death</em></h1>
       <div class="entry-meta">
-        <p class="entry-desc">Photography as a way of paying attention.</p>
-        <div class="entry-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+        <p class="entry-desc"><b>Photography as a way of paying attention.</b></p>
+       <div class="entry-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
       </div>
     </div>
   </section>
@@ -543,7 +543,7 @@
   <section class="cv-section" id="cv">
     <div class="sec-head reveal">
       <span class="sec-label">Curriculum Vitae</span>
-      <h2 class="sec-title">Selected History</h2>
+      <h2 class="sec-title"></h2>
     </div>
     <div class="cv-grid">
       <div class="cv-col reveal">
@@ -571,43 +571,43 @@
   <section id="adequate-light">
     <div class="al-intro">
       <div class="reveal">
-        <p class="al-eyebrow">A Project Series by Drew Death</p>
+        <p class="al-eyebrow">Essays by Drew Death</p>
         <h2 class="al-title">Adequate<br><em>Light</em></h2>
       </div>
       <div class="reveal">
         <div class="al-rule"></div>
         <p class="al-desc"><em>Adequate Light</em> is an ongoing series of essays at the intersection of photography and philosophy — although this may change, as all things do.</p>
         <p class="al-desc">The writing asks the same questions the photographs ask: what does it mean to actually see something? There are no conclusions here. Only the attempt to stay present to what's in front of the lens, or the page.</p>
-        <p class="al-subtext">Not the golden hour. The ordinary light of ordinary moments, and what it asks of us to look at them honestly.</p>
+        <p class="al-subtext">The ordinary light of ordinary moments, and what it asks of us to look at them honestly.</p>
       </div>
     </div>
 
-    <div class="al-writing">
+    <!-- <div class="al-writing">
       <div class="al-writing-head reveal">
         <span>Upcoming Writing</span>
         <h3>From the Archive</h3>
       </div>
       <div class="al-grid">
         <div class="al-item reveal">
-          <p class="al-date">April 2026</p>
+          <p class="al-date">Coming - April 2026</p>
           <h4>On Berger, <em>Photographs of Agony</em>, and the ethics of looking</h4>
           <p>What does it mean to bear witness? And what does the photograph ask of us in return?</p>
-          <a href="#" class="al-link">Read on Substack</a>
+          <a href="https://drewdeath.substack.com" class="al-link">Read on Substack</a>
         </div>
         <div class="al-item reveal">
-          <p class="al-date">May 2026</p>
+          <p class="al-date">Coming - May 2026</p>
           <h4>Zone focusing as a <em>meditation</em></h4>
           <p>Prefocusing is not a shortcut. It is a commitment to presence before the moment arrives.</p>
-          <a href="#" class="al-link">Read on Substack</a>
+          <a href="https://drewdeath.substack.com" class="al-link">Read on Substack</a>
         </div>
         <div class="al-item reveal">
-          <p class="al-date">June 2026</p>
+          <p class="al-date">Coming - June 2026</p>
           <h4>The M10-P and the <em>discipline of quiet</em></h4>
           <p>On choosing a camera that cannot hide behind burst modes, computational processing, or noise.</p>
-          <a href="#" class="al-link">Read on Substack</a>
+          <a href="https://drewdeath.substack.com" class="al-link">Read on Substack</a>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="al-cta reveal">
       <p>The full archive lives on Drew Death's Substack. New essays on photography, philosophy, and the <em>practice of seeing</em> — published when there's something worth saying.</p>
@@ -639,9 +639,10 @@
   <footer>
     <p>© 2026 Drew Death — All rights reserved</p>
     <div class="footer-links">
-      <a href="https://drewdeath.substack.com" target="_blank">Adequate Light</a>
       <a href="#work">Work</a>
-      <a href="#cv">CV</a>
+	  <a href="#statement">Statement</a>
+	  <a href="#cv">CV</a>
+	  <a href="https://drewdeath.substack.com" target="_blank">Adequate Light</a>     
       <a href="#contact">Contact</a>
     </div>
   </footer>
@@ -651,7 +652,7 @@
     <button class="lb-close" onclick="closeLb()">Close ✕</button>
     <div class="lb-inner" onclick="event.stopPropagation()">
       <div class="lb-frame ph-d1" id="lb-frame">
-        <svg style="width:28px;height:28px;color:#2e2a26;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <svg style="width:28px;height:28px;color:#2e2a26;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/</svg>
       </div>
       <div class="lb-meta">
         <span class="lb-title" id="lb-title"></span>

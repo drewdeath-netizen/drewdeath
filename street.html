@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Street / Doc — Drew Death</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void: #0d0c0b;
+      --deep: #141210;
+      --surface: #1c1916;
+      --mid: #2e2a26;
+      --rule: #2a2622;
+      --bone: #e8e2d8;
+      --off: #a09890;
+      --dim: #5a5248;
+      --ember: #c8a878;
+      --serif: 'Cormorant', Georgia, serif;
+      --mono: 'Inconsolata', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--void);
+      color: var(--bone);
+      font-family: var(--serif);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--void); z-index: 9000;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.8s ease 0.2s;
+    }
+    #loader.done { opacity: 0; pointer-events: none; }
+    .loader-name {
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--dim); animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.8rem 3.5rem;
+    }
+    header::after {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(to bottom, var(--void) 0%, transparent 100%);
+    }
+    .logo { display: flex; flex-direction: column; text-decoration: none; }
+    .logo-name {
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+      letter-spacing: 0.25em; text-transform: uppercase; line-height: 1;
+      color: var(--bone);
+    }
+    .logo-sub {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      margin-top: 0.3rem; color: var(--dim);
+    }
+    nav { display: flex; gap: 2.5rem; align-items: center; }
+    nav a {
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none; color: var(--dim);
+      position: relative; transition: color 0.3s;
+    }
+    nav a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 1px; background: var(--ember); transition: width 0.3s;
+    }
+    nav a:hover { color: var(--bone); }
+    nav a:hover::after { width: 100%; }
+    nav a.active { color: var(--bone); }
+    .nav-al { color: var(--ember) !important; font-style: italic; }
+
+    /* ── HAMBURGER ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 1px;
+      background: var(--bone); transition: all 0.3s ease;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── PAGE HEADER ── */
+    .page-head {
+      padding: 12rem 3.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: end;
+      border-bottom: 1px solid var(--rule);
+    }
+    .page-eyebrow {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 1.5rem;
+    }
+    .page-title {
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 300; line-height: 0.95;
+      letter-spacing: -0.02em; color: var(--bone);
+    }
+    .page-title em { font-style: italic; color: var(--off); }
+    .page-desc {
+      font-size: 1rem; font-weight: 300;
+      line-height: 1.9; color: var(--off);
+      max-width: 48ch; margin-bottom: 1.5rem;
+    }
+    .page-meta {
+      font-family: var(--mono); font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dim); line-height: 2.2;
+    }
+
+    /* ── H-RULE ── */
+    .h-rule {
+      display: flex; align-items: center; gap: 2rem;
+      padding: 0 3.5rem; height: 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .h-rule-label {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--dim); flex-shrink: 0;
+    }
+    .h-rule-line { flex: 1; height: 1px; background: var(--rule); }
+
+    /* ── STREET GRID — dense, journalistic ── */
+    .grid-section { padding: 3rem 3.5rem 6rem; }
+
+    .street-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+
+    /* Some frames span 2 columns for rhythm */
+    .street-grid .span-2 { grid-column: span 2; }
+
+    .grid-frame {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      background: var(--deep);
+    }
+
+    .grid-frame img,
+    .grid-frame .ph {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .grid-frame.tall img,
+    .grid-frame.tall .ph { aspect-ratio: 2/3; }
+
+    .grid-frame.span-2 img,
+    .grid-frame.span-2 .ph { aspect-ratio: 16/9; }
+
+    .grid-frame:hover img { transform: scale(1.03); }
+
+    /* Placeholder */
+    .ph {
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.5rem;
+      background: var(--deep);
+    }
+    .ph-icon { width: 20px; height: 20px; color: var(--mid); }
+    .ph-label {
+      font-family: var(--mono); font-size: 0.52rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim);
+    }
+
+    .grid-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,12,11,0.85) 0%, transparent 45%);
+      opacity: 0; transition: opacity 0.35s;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 1rem;
+    }
+    .grid-frame:hover .grid-overlay { opacity: 1; }
+    .grid-overlay-title {
+      font-size: 0.85rem; font-weight: 300;
+      color: var(--bone); letter-spacing: 0.04em;
+    }
+    .grid-overlay-meta {
+      font-family: var(--mono); font-size: 0.52rem;
+      letter-spacing: 0.18em; color: var(--ember);
+      margin-top: 0.2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--void); border-top: 1px solid var(--rule);
+      padding: 1.8rem 3.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p, footer a {
+      font-family: var(--mono); font-size: 0.58rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--dim); text-decoration: none; transition: color 0.2s;
+    }
+    footer a:hover { color: var(--off); }
+    .footer-links { display: flex; gap: 2rem; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0;
+      background: rgba(8,7,6,0.97); z-index: 800;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lb-inner {
+      max-width: 90vw; max-height: 92vh;
+      display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    }
+    .lb-frame {
+      max-width: 85vw; max-height: 82vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lb-frame img { max-width: 100%; max-height: 82vh; object-fit: contain; display: block; }
+    .lb-meta { display: flex; gap: 3rem; align-items: center; }
+    .lb-title { font-size: 1rem; font-weight: 300; color: var(--off); letter-spacing: 0.08em; }
+    .lb-num { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--dim); }
+    .lb-close {
+      position: absolute; top: 2rem; right: 3rem;
+      background: none; border: none;
+      font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--dim); cursor: pointer; transition: color 0.2s;
+    }
+    .lb-close:hover { color: var(--bone); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      header { padding: 1.2rem 1.5rem; }
+      .logo-name { font-size: 0.95rem; }
+      .nav-toggle { display: flex; }
+      nav {
+        display: none; position: fixed; inset: 0;
+        background: var(--void);
+        flex-direction: column; align-items: center; justify-content: center;
+        gap: 2.5rem; z-index: 99;
+      }
+      nav.open { display: flex; }
+      nav a { font-size: 1.1rem; color: var(--off); }
+
+      .page-head { padding: 8rem 1.5rem 3rem; grid-template-columns: 1fr; gap: 2rem; }
+      .page-title { font-size: clamp(2.5rem, 12vw, 4rem); }
+      .h-rule { padding: 0 1.5rem; }
+      .grid-section { padding: 2rem 1.5rem 4rem; }
+      .street-grid { grid-template-columns: 1fr 1fr; }
+      .street-grid .span-2 { grid-column: span 2; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+      .lb-frame { max-width: 95vw; }
+      .lb-close { top: 1rem; right: 1rem; }
+      .grid-overlay { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loader"><span class="loader-name">Drew Death — Street / Doc</span></div>
+
+  <!-- HEADER -->
+  <header id="hdr">
+    <a class="logo" href="index.html">
+      <span class="logo-name">Drew Death</span>
+      <span class="logo-sub">Photographer — Scotland</span>
+    </a>
+    <nav id="main-nav">
+      <a href="index.html" onclick="closeNav()">Home</a>
+      <a href="street.html" class="active" onclick="closeNav()">Street / Doc</a>
+      <a href="studies.html" onclick="closeNav()">Studies</a>
+      <a href="index.html#adequate-light" class="nav-al" onclick="closeNav()">Adequate Light</a>
+      <a href="index.html#contact" onclick="closeNav()">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <div class="page-head">
+    <div class="reveal">
+      <p class="page-eyebrow">Drew Death — Series</p>
+      <h1 class="page-title">Street<br><em>/ Doc</em></h1>
+    </div>
+    <div class="reveal">
+      <p class="page-desc">People in the world, going about it. Shot on the street, in markets, on public transport, at the edges of things. The work doesn't intervene — it waits, watches, and occasionally gets lucky.</p>
+      <p class="page-meta">
+        Scotland · Portland · Spain · Chicago<br>
+        2018–Present
+      </p>
+    </div>
+  </div>
+
+  <div class="h-rule">
+    <span class="h-rule-label">All Work</span>
+    <div class="h-rule-line"></div>
+    <span class="h-rule-label" id="count-label">— Images</span>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid-section">
+    <div class="street-grid" id="street-grid">
+
+      <!-- Row 1 -->
+      <div class="grid-frame reveal" onclick="openLb('Glasgow, 2024','001','images/L1020287.jpg')">
+        <!-- Replace: <img src="images/your-image.jpg" alt="..."> -->
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">001</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Glasgow, 2024</span><span class="grid-overlay-meta">001</span></div>
+      </div>
+
+      <div class="grid-frame span-2 reveal" onclick="openLb('Chicago, 2021','002','images/DSCF5944.jpg')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">002</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Chicago, 2021</span><span class="grid-overlay-meta">002</span></div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="grid-frame span-2 reveal" onclick="openLb('Portland, 2022','003','images/XP3D0500.jpg')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">003</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Portland, 2022</span><span class="grid-overlay-meta">003</span></div>
+      </div>
+
+      <div class="grid-frame reveal" onclick="openLb('Spain, 2023','004','images/R0001247.jpg')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">004</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Spain, 2023</span><span class="grid-overlay-meta">004</span></div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="grid-frame reveal" onclick="openLb('Portland, 2022','005','images/R0000349.jpg')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">005</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Portland, 2022</span><span class="grid-overlay-meta">005</span></div>
+      </div>
+
+      <div class="grid-frame reveal" onclick="openLb('Scotland, 2024','006','')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">006</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Scotland, 2024</span><span class="grid-overlay-meta">006</span></div>
+      </div>
+
+      <div class="grid-frame reveal" onclick="openLb('Scotland, 2024','007','')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">007</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Scotland, 2024</span><span class="grid-overlay-meta">007</span></div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="grid-frame span-2 reveal" onclick="openLb('Untitled','008','')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">008</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Untitled</span><span class="grid-overlay-meta">008</span></div>
+      </div>
+
+      <div class="grid-frame reveal" onclick="openLb('Untitled','009','')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">009</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Untitled</span><span class="grid-overlay-meta">009</span></div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="grid-frame reveal" onclick="openLb('Untitled','010','')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">010</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Untitled</span><span class="grid-overlay-meta">010</span></div>
+      </div>
+
+      <div class="grid-frame reveal" onclick="openLb('Untitled','011','')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">011</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Untitled</span><span class="grid-overlay-meta">011</span></div>
+      </div>
+
+      <div class="grid-frame reveal" onclick="openLb('Untitled','012','')">
+        <div class="ph"><svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><circle cx="12" cy="12" r="4"/><path d="M3 9a2 2 0 0 1 2-2h.93a2 2 0 0 0 1.664-.89l.812-1.22A2 2 0 0 1 10.07 4h3.86a2 2 0 0 1 1.664.89l.812 1.22A2 2 0 0 0 18.07 7H19a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ph-label">012</span></div>
+        <div class="grid-overlay"><span class="grid-overlay-title">Untitled</span><span class="grid-overlay-meta">012</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Drew Death</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="studies.html">Studies</a>
+      <a href="index.html#adequate-light">Adequate Light</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lb" onclick="closeLb()">
+    <button class="lb-close" onclick="closeLb()">Close ✕</button>
+    <div class="lb-inner" onclick="event.stopPropagation()">
+      <div class="lb-frame" id="lb-frame"></div>
+      <div class="lb-meta">
+        <span class="lb-title" id="lb-title"></span>
+        <span class="lb-num" id="lb-num"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('done'), 400);
+      // Count visible images
+      const frames = document.querySelectorAll('.grid-frame');
+      document.getElementById('count-label').textContent = frames.length + ' Images';
+    });
+
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) setTimeout(() => e.target.classList.add('in'), i * 40);
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+    function toggleNav() {
+      const nav = document.getElementById('main-nav');
+      const btn = document.getElementById('nav-toggle');
+      nav.classList.toggle('open');
+      btn.classList.toggle('open');
+      document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeNav() {
+      document.getElementById('main-nav').classList.remove('open');
+      document.getElementById('nav-toggle').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function openLb(title, num, src) {
+      document.getElementById('lb-title').textContent = title;
+      document.getElementById('lb-num').textContent = num + ' — Drew Death';
+      const frame = document.getElementById('lb-frame');
+      frame.innerHTML = src ? '<img src="' + src + '" style="max-width:100%;max-height:82vh;object-fit:contain;display:block;">' : '';
+      document.getElementById('lb').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLb() {
+      document.getElementById('lb').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  </script>
+</body>
+</html>
