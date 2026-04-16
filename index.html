@@ -262,15 +262,16 @@
     #adequate-light > * { position: relative; z-index: 1; }
 
     .al-intro {
-      padding: 5rem 3.5rem 4rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end;
+      margin: 0 3.5rem 0;
+	  padding: 5rem 3.5rem 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; justify-content: left;
     }
-    .al-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; margin-bottom: 1.5rem; }
-    .al-title { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; line-height: 1; letter-spacing: -0.01em; color: #1a1714; }
-    .al-title em { font-style: italic; color: #7a6a52; }
-    .al-rule { width: 40px; height: 1px; background: #c8b99a; margin-bottom: 1.5rem; }
-    .al-desc { font-size: 1.05rem; color: #7a6a52; line-height: 1.9; max-width: 44ch; margin-bottom: 1.5rem; }
-    .al-subtext { font-size: 0.88rem; color: #a09080; line-height: 1.9; max-width: 38ch; }
+    .al-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:end; }
+    .al-title { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; line-height: 1; letter-spacing: -0.01em; color: #1a1714; text-align:end; }
+    .al-title em { font-style: italic; color: #7a6a52; text-align:end; }
+    .al-rule { width: 400px; height: 1px; background: #c8b99a; margin-bottom: 1.5rem; }
+    .al-desc { margin: 0 2rem 0; font-size: 1.05rem; color: #7a6a52; line-height: 1.9; max-width: 44ch; margin-bottom: 1.5rem; }
+    .al-subtext {  margin: 0 2rem 1rem; font-size: 0.88rem; color: #a09080; line-height: 1.9; max-width: 38ch; }
 
     .al-writing { padding: 0 3.5rem 4rem; border-top: 1px solid #e0dbd2; }
     .al-writing-head { display: flex; align-items: baseline; justify-content: space-between; padding: 2rem 0 3rem; border-bottom: 1px solid #e0dbd2; margin-bottom: 3rem; }
@@ -286,10 +287,10 @@
     .al-link:hover { border-color: #1a1714; }
 
     .al-cta {
-      margin: 0 3.5rem 4rem;
-      padding: 3rem 3.5rem;
+      margin: 0 2.5rem 0;
+      padding: 2rem 2.5rem;
       background: #f5f2ec;
-      display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+      display: flex; align-items: center; justify-content: center; gap: 3rem;
     }
     .al-cta p { font-size: 1.1rem; font-weight: 300; color: #7a6a52; line-height: 1.6; max-width: 50ch; }
     .al-cta p em { font-style: italic; color: #c8a878; }
@@ -322,10 +323,10 @@
     .footer-links { display: flex; gap: 2rem; }
 
     /* ── LIGHTBOX ── */
-    .lightbox { position: fixed; inset: 0; background: rgba(8,7,6,0.97); z-index: 800; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .lightbox { position: fixed; inset: 0; background: rgba(8,7,6,0.9); z-index: 800; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
     .lightbox.open { opacity: 1; pointer-events: all; }
-    .lb-inner { max-width: 85vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-    .lb-frame { width: 60vw; height: 75vh; background: var(--surface); display: flex; align-items: center; justify-content: center; }
+    .lb-inner { max-width: 85vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center; gap: 1.5rem;}
+    .lb-frame { width: 60vw; height: 75vh; background: var(--dim); display: flex; align-items: center; justify-content: center; }
     .lb-meta { display: flex; gap: 3rem; align-items: center; }
     .lb-title { font-size: 1rem; font-weight: 300; color: var(--off); letter-spacing: 0.08em; }
     .lb-num { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--dim); }
@@ -408,13 +409,14 @@
       .zone-transition { height: 60px; }
       .zone-label { left: 1.5rem; font-size: 0.52rem; }
       .zone-exit { height: 50px; }
-      .al-intro { padding: 3rem 1.5rem 2.5rem; grid-template-columns: 1fr; gap: 2rem; }
-      .al-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+      .al-eyebrow { margin: 0 3.5rem 0; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; }
+	  .al-intro { margin: 0 3.5rem 0; padding: 3rem 1.5rem 0; grid-template-columns: 1fr; gap: 2.5rem; }
+      .al-title { margin: 0 3.5rem 0; font-size: clamp(2.2rem, 10vw, 3.5rem); }
       .al-writing { padding: 0 1.5rem 3rem; }
       .al-writing-head { flex-direction: column; gap: 0.5rem; padding: 1.5rem 0 2rem; }
       .al-grid { grid-template-columns: 1fr; gap: 0; }
       .al-item { padding: 1.5rem 0; border-top: 1px solid #d4cfc6; }
-      .al-cta { margin: 0 1.5rem 3rem; padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; }
+      .al-cta { margin: 0 1.5rem 0; padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; }
       .al-cta p { font-size: 1rem; }
       .al-cta-btn { width: 100%; justify-content: center; }
 
@@ -579,7 +581,7 @@
         <p class="al-desc"><em>Adequate Light</em> is an ongoing series of essays at the intersection of photography and philosophy — although this may change, as all things do.</p>
         <p class="al-desc">The writing asks the same questions the photographs ask: what does it mean to actually see something? There are no conclusions here. Only the attempt to stay present to what's in front of the lens, or the page.</p>
         <p class="al-subtext">The ordinary light of ordinary moments, and what it asks of us to look at them honestly.</p>
-      </div>
+	  </div>
     </div>
 
     <!-- <div class="al-writing">
@@ -628,7 +630,7 @@
     <div class="contact-right reveal">
       <p>Available for editorial commissions, exhibition proposals, and residency collaborations. For MFA and institutional enquiries, a full portfolio PDF is available on request.</p>
       <div class="contact-items">
-        <div class="contact-item"><span class="contact-item-label">Email</span><a href="https://www.instagram.com/drew.death/" target="_blnak">Contact me via Instagram</span></a></div>
+        <div class="contact-item"><span class="contact-item-label">Email</span><a href="https://www.instagram.com/drew.death/" target="_blank">Contact me via Instagram</span></a></div>
         <div class="contact-item"><span class="contact-item-label">Instagram</span><a href="https://www.instagram.com/drew.death/" target="_blank">@drew.death</a></div>
         <div class="contact-item"><span class="contact-item-label">Writing</span><a href="https://drewdeath.substack.com" target="_blank">Adequate Light on Substack</a></div>
       </div>
@@ -661,7 +663,7 @@
     </div>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+ <script>
     function toggleNav() {
       const nav = document.getElementById('main-nav');
       const btn = document.getElementById('nav-toggle');
