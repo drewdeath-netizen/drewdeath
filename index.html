@@ -28,7 +28,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--void);
+	  background: var(--void);
       color: var(--bone);
       font-family: var(--serif);
       font-weight: 300;
@@ -48,7 +48,7 @@
 
     /* ── LOADER ── */
     #loader {
-      position: fixed; inset: 0;
+	  position: fixed; inset: 0;
       background: var(--void);
       z-index: 9000;
       display: flex; align-items: center; justify-content: center;
@@ -405,9 +405,9 @@
       .zone-transition { height: 60px; }
       .zone-label { left: 1.5rem; font-size: 0.52rem; }
       .zone-exit { height: 50px; }
-      .al-eyebrow { margin: 0 3.5rem 0; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:start;}
-	  .al-intro { margin: 0 3.5rem 0; padding: 3rem 1.5rem 0; grid-template-columns: 1fr; gap: 2.5rem; text-align:start; }
-      .al-title { margin: 0 3.5rem 0; font-size: clamp(2.2rem, 10vw, 3.5rem); text-align:start; }
+      .al-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:start;}
+	  .al-title { font-size: clamp(2.2rem, 10vw, 3.5rem); text-align:start; }
+	  .al-intro { padding: 3rem 1.5rem 0; grid-template-columns: auto; gap: 2.5rem; }
       .al-writing { padding: 0 1.5rem 3rem; }
       .al-writing-head { flex-direction: column; gap: 0.5rem; padding: 1.5rem 0 2rem; }
       .al-grid { grid-template-columns: 1fr; gap: 0; }
