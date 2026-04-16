@@ -105,10 +105,7 @@
     header.dark-hd nav a { color: var(--dim); }
     header.dark-hd nav a::after { background: var(--ember); }
     header.dark-hd nav a:hover { color: var(--bone); }
-    header.warm-hd nav a { color: #7a6a52; }
-    header.warm-hd nav a::after { background: #1a1714; }
-    header.warm-hd nav a:hover { color: #1a1714; }
-    .nav-al { color: var(--ember) !important; font-style: italic; }
+   
     header.warm-hd .nav-al { color: #000000 !important; }
 
     /* ── UTILS ── */
@@ -262,16 +259,15 @@
     #adequate-light > * { position: relative; z-index: 1; }
 
     .al-intro {
-      margin: 0 3.5rem 0;
-	  padding: 5rem 3.5rem 0;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; justify-content: left;
+	  padding: 3rem 3.5rem 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
     }
     .al-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:end; }
     .al-title { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; line-height: 1; letter-spacing: -0.01em; color: #1a1714; text-align:end; }
     .al-title em { font-style: italic; color: #7a6a52; text-align:end; }
-    .al-rule { width: 400px; height: 1px; background: #c8b99a; margin-bottom: 1.5rem; }
+    .al-rule { margin: 0.5rem 0; width: 400px; height: 1px; background: #c8b99a; }
     .al-desc { margin: 0 2rem 0; font-size: 1.05rem; color: #7a6a52; line-height: 1.9; max-width: 44ch; margin-bottom: 1.5rem; }
-    .al-subtext {  margin: 0 2rem 1rem; font-size: 0.88rem; color: #a09080; line-height: 1.9; max-width: 38ch; }
+    .al-subtext {  margin: 0 2rem; font-size: 0.88rem; color: #a09080; line-height: 1.9; max-width: 38ch; }
 
     .al-writing { padding: 0 3.5rem 4rem; border-top: 1px solid #e0dbd2; }
     .al-writing-head { display: flex; align-items: baseline; justify-content: space-between; padding: 2rem 0 3rem; border-bottom: 1px solid #e0dbd2; margin-bottom: 3rem; }
@@ -288,7 +284,7 @@
 
     .al-cta {
       margin: 0 2.5rem 0;
-      padding: 2rem 2.5rem;
+      padding: 1rem 2.5rem 2rem;
       background: #f5f2ec;
       display: flex; align-items: center; justify-content: center; gap: 3rem;
     }
@@ -409,9 +405,9 @@
       .zone-transition { height: 60px; }
       .zone-label { left: 1.5rem; font-size: 0.52rem; }
       .zone-exit { height: 50px; }
-      .al-eyebrow { margin: 0 3.5rem 0; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; }
-	  .al-intro { margin: 0 3.5rem 0; padding: 3rem 1.5rem 0; grid-template-columns: 1fr; gap: 2.5rem; }
-      .al-title { margin: 0 3.5rem 0; font-size: clamp(2.2rem, 10vw, 3.5rem); }
+      .al-eyebrow { margin: 0 3.5rem 0; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:start;}
+	  .al-intro { margin: 0 3.5rem 0; padding: 3rem 1.5rem 0; grid-template-columns: 1fr; gap: 2.5rem; text-align:start; }
+      .al-title { margin: 0 3.5rem 0; font-size: clamp(2.2rem, 10vw, 3.5rem); text-align:start; }
       .al-writing { padding: 0 1.5rem 3rem; }
       .al-writing-head { flex-direction: column; gap: 0.5rem; padding: 1.5rem 0 2rem; }
       .al-grid { grid-template-columns: 1fr; gap: 0; }
@@ -490,7 +486,7 @@
     <div class="work-header reveal">
       <h2 class="work-series-name"><em>Threshold</em><br>and Other Photographs</h2>
       <div class="work-meta-stack">
-        <p>Series I</p><p>2023–2025</p><p>Scotland</p><p></p>
+        <p>Series I</p><p>2021–2025</p><p>Scotland</p><p></p>
       </div>
     </div>
     <div class="work-sequence">
@@ -580,7 +576,7 @@
         <div class="al-rule"></div>
         <p class="al-desc"><em>Adequate Light</em> is an ongoing series of essays at the intersection of photography and philosophy — although this may change, as all things do.</p>
         <p class="al-desc">The writing asks the same questions the photographs ask: what does it mean to actually see something? There are no conclusions here. Only the attempt to stay present to what's in front of the lens, or the page.</p>
-        <p class="al-subtext">The ordinary light of ordinary moments, and what it asks of us to look at them honestly.</p>
+        <p class="al-subtext"><em>It is the ordinary light of ordinary moments, and what it asks of us to look at them honestly.</em></p>
 	  </div>
     </div>
 
@@ -615,8 +611,6 @@
       <p>The full archive lives on Drew Death's Substack. New essays on photography, philosophy, and the <em>practice of seeing</em> — published when there's something worth saying.</p>
       <a href="https://drewdeath.substack.com" target="_blank" class="al-cta-btn">Read Adequate Light</a>
     </div>
-
-    <div style="height:3rem;"></div>
   </section>
 
   <!-- TRANSITION: warm → dark -->
@@ -690,7 +684,7 @@
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
     // Header colour shift when entering/leaving warm zone
-    const alSection = document.getElementById('adequate-light');
+    const alSection = document.getElementById('contact');
     const hdr = document.getElementById('hdr');
     const zoneObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
