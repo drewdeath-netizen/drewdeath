@@ -105,8 +105,10 @@
     header.dark-hd nav a { color: var(--dim); }
     header.dark-hd nav a::after { background: var(--ember); }
     header.dark-hd nav a:hover { color: var(--bone); }
-   
-    header.warm-hd .nav-al { color: #000000 !important; }
+    header.warm-hd nav a { color: #7a6a52; }
+    header.warm-hd nav a::after { background: #1a1714; }
+    header.warm-hd nav a:hover { color: #1a1714; }
+
 
     /* ── UTILS ── */
     .h-rule {
@@ -167,7 +169,7 @@
     }
     .entry-scroll { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-left: auto; }
     .entry-scroll span {
-      font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.25em;
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em;
       text-transform: uppercase; color: var(--dim); writing-mode: vertical-lr;
     }
     .scroll-line {
@@ -188,7 +190,7 @@
     .work-header {
       display: grid; grid-template-columns: 1fr auto;
       align-items: end; margin-bottom: 4rem;
-      padding-bottom: 1.2rem; border-bottom: 1px solid var(--off);
+      padding-bottom: 0; 
     }
     .work-series-name { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; }
     .work-series-name em { font-style: italic; color: var(--ember); }
@@ -212,8 +214,8 @@
     .seq-info { background: var(--deep); display: flex; align-items: flex-end; justify-content: flex-end; padding: 1.5rem; }
 
     /* ── STATEMENT ── */
-    .statement { padding: 6rem 3.5rem; display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; border-top: 1px solid var(--rule); }
-    .statement-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); padding-top: 0.4rem; }
+    .statement { padding: 5rem 3.5rem; display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; border-top: 1px solid var(--rule); }
+    .statement-label { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); padding-top: 0.4rem; }
     .statement-body h2 { font-size: clamp(1.6rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 2.5rem; }
     .statement-body h2 em { font-style: italic; color: var(--off); }
     .statement-body p { font-size: 1.05rem; font-weight: 300; line-height: 2; color: var(--off); margin-bottom: 1.5rem; max-width: 58ch; }
@@ -222,7 +224,7 @@
     /* ── CV ── */
     .cv-section { padding: 5rem 3.5rem; border-top: 1px solid var(--rule); background: var(--void); }
     .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3.5rem; }
-    .sec-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); }
+    .sec-label { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); }
     .sec-title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; }
     .cv-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4rem; }
     .cv-col h3 { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ember); margin-bottom: 1.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--rule); }
@@ -238,10 +240,11 @@
       height: 100px;
       background: linear-gradient(to bottom, var(--void), #f5f2ec);
       position: relative;
+	  border-top: 1px solid var(--rule);
     }
     .zone-label {
       position: absolute; bottom: 1.2rem; left: 3.5rem;
-      font-family: var(--mono); font-size: 0.58rem;
+      font-family: var(--mono); font-size: 0.8rem;
       letter-spacing: 0.3em; text-transform: uppercase; color: #a09080;
     }
     .zone-exit { height: 80px; background: linear-gradient(to bottom, #f5f2ec, var(--void)); }
@@ -259,13 +262,13 @@
     #adequate-light > * { position: relative; z-index: 1; }
 
     .al-intro {
-	  padding: 3rem 3.5rem 0;
+	  padding: 6rem 3.5rem 2rem;
       display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
     }
     .al-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:end; }
     .al-title { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; line-height: 1; letter-spacing: -0.01em; color: #1a1714; text-align:end; }
     .al-title em { font-style: italic; color: #7a6a52; text-align:end; }
-    .al-rule { margin: 0.5rem 0; width: 400px; height: 1px; background: #c8b99a; }
+    .al-rule { margin: 0.5rem 0; width: 100%; height: 1px; background: #c8b99a; justify-content:end;}
     .al-desc { margin: 0 2rem 0; font-size: 1.05rem; color: #7a6a52; line-height: 1.9; max-width: 44ch; margin-bottom: 1.5rem; }
     .al-subtext {  margin: 0 2rem; font-size: 0.88rem; color: #a09080; line-height: 1.9; max-width: 38ch; }
 
@@ -407,7 +410,7 @@
       .zone-exit { height: 50px; }
       .al-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:start;}
 	  .al-title { font-size: clamp(2.2rem, 10vw, 3.5rem); text-align:start; }
-	  .al-intro { padding: 3rem 1.5rem 0; grid-template-columns: auto; gap: 2.5rem; }
+	  .al-intro { padding: 3rem 1.5rem; grid-template-columns: 1fr; gap: 1.5rem; }
       .al-writing { padding: 0 1.5rem 3rem; }
       .al-writing-head { flex-direction: column; gap: 0.5rem; padding: 1.5rem 0 2rem; }
       .al-grid { grid-template-columns: 1fr; gap: 0; }
@@ -541,7 +544,7 @@
   <section class="cv-section" id="cv">
     <div class="sec-head reveal">
       <span class="sec-label">Curriculum Vitae</span>
-      <h2 class="sec-title"></h2>
+      <h2 class="sec-title">Selected History</h2>
     </div>
     <div class="cv-grid">
       <div class="cv-col reveal">
@@ -563,7 +566,7 @@
   </section>
 
   <!-- TRANSITION: dark → warm -->
-  <div class="zone-transition"><span class="zone-label">Adequate Light ↓</span></div>
+  <div class="zone-transition"><span class="zone-label"></span></div>
 
   <!-- ADEQUATE LIGHT WARM ZONE -->
   <section id="adequate-light">
@@ -573,7 +576,6 @@
         <h2 class="al-title">Adequate<br><em>Light</em></h2>
       </div>
       <div class="reveal">
-        <div class="al-rule"></div>
         <p class="al-desc"><em>Adequate Light</em> is an ongoing series of essays at the intersection of photography and philosophy — although this may change, as all things do.</p>
         <p class="al-desc">The writing asks the same questions the photographs ask: what does it mean to actually see something? There are no conclusions here. Only the attempt to stay present to what's in front of the lens, or the page.</p>
         <p class="al-subtext"><em>It is the ordinary light of ordinary moments, and what it asks of us to look at them honestly.</em></p>
@@ -606,7 +608,7 @@
         </div>
       </div>
     </div> -->
-
+		
     <div class="al-cta reveal">
       <p>The full archive lives on Drew Death's Substack. New essays on photography, philosophy, and the <em>practice of seeing</em> — published when there's something worth saying.</p>
       <a href="https://drewdeath.substack.com" target="_blank" class="al-cta-btn">Read Adequate Light</a>
