@@ -720,15 +720,15 @@
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
     // Header colour shift when entering/leaving warm zone
-    const alSection = document.getElementById('contact');
-    const hdr = document.getElementById('hdr');
-    const zoneObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        hdr.classList.toggle('warm-hd', e.isIntersecting);
-        hdr.classList.toggle('dark-hd', !e.isIntersecting);
-      });
-    }, { threshold: 0.05 });
-    zoneObserver.observe(alSection);
+    //const alSection = document.getElementById('contact');
+    //const hdr = document.getElementById('hdr');
+    //const zoneObserver = new IntersectionObserver((entries) => {
+    //  entries.forEach(e => {
+    //    hdr.classList.toggle('warm-hd', e.isIntersecting);
+    //    hdr.classList.toggle('dark-hd', !e.isIntersecting);
+    //  });
+    //}, { threshold: 0.05 });
+    //zoneObserver.observe(alSection);
 
     // Lightbox
     function openLb(title, num, src) {
