@@ -46,6 +46,7 @@
       cursor: crosshair;
     }
 
+
     body::after {
       content: '';
       position: fixed;
@@ -89,35 +90,28 @@
     .entry-bg::after {content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,12,11,0.92) 0%, rgba(13,12,11,0.2) 60%, rgba(13,12,11,0.1) 100%); }
     
     .entry-content { padding-top: 7rem; position: relative; z-index: 2; }
-    .entry-index { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember);  opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+    .entry-index { font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember);  }
     .entry-headline { font-size: clamp(3.5rem, 8vw, 10rem); font-weight: 300; line-height: 0.92; letter-spacing: -0.02em; color: var(--bone); opacity: 0; animation: fadeUp 1s ease 1.1s forwards; }
     .entry-headline em { font-style: italic; color: var(--off); }
-    .entry-meta { display: flex; align-items: center; gap: 1rem; opacity: 0; animation: fadeUp 1s ease 1.4s forwards; }
+    .entry-meta { display: flex; align-items: center; gap: 1rem; animation: fadeUp 1s ease 1.4s forwards; }
     .entry-desc { font-size: 0.9rem; color: var(--dim); line-height: 1.8; max-width: 80ch; font-family: var(--mono); letter-spacing: 0.04em; }
-    .entry-scroll { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-left: auto; }
-    .entry-scroll span { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); writing-mode: vertical-lr; }
-    .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--dim), transparent); animation: scrollPulse 2s ease-in-out infinite; }
-    @keyframes scrollPulse {
-      0%  { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100%{ transform: scaleY(0); transform-origin: bottom; }
-    }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+	
+	/* ─── MAIN ─── */
+	main { max-width: 1600px; margin: 0 auto; padding: 0 2.5rem; }
 
     /* ── WORK ── */
-    .work { padding: 5rem 3.5rem; }
-    .work-header { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 4rem; padding-bottom: 0; }
+    .work { padding: 4rem 5rem; }
+    .work-header { display: grid; grid-template-columns: 1fr auto; align-items: end; margin-bottom: 2rem; padding-bottom: 0; }
     .work-series-name { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; }
     .work-series-name em { font-style: italic; color: var(--ember); }
     .work-meta-stack { text-align: right; }
     .work-meta-stack p { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); line-height: 2; }
-    .work-sequence { display: grid; grid-template-columns: 60px 1fr 1fr 60px; gap: 1px; background: var(--rule); }
+    .work-sequence {display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; background: var(--bone); padding: 1rem; }
     .seq-number { background: var(--deep); display: flex; align-items: flex-start; justify-content: center; padding-top: 1.5rem; font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.2em; color: var(--dim); }
     .seq-col { display: flex; flex-direction: column; gap: 1px; }
     .seq-frame { background: var(--deep); position: relative; cursor: pointer; overflow: hidden; }
-    .seq-frame .ph { width: 100%; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; transition: background 0.4s; }
-    .seq-frame.wide .ph { aspect-ratio: 4/3; }
+    .seq-frame img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; min-height: unset; }
+
     .seq-frame:hover .ph { background: var(--mid); }
     .ph-d1{background:#111008} .ph-d2{background:#0c1012} .ph-d3{background:#10100d}
     .ph-d4{background:#0e0d14} .ph-d5{background:#131110} .ph-d6{background:#0d1010}
@@ -130,7 +124,7 @@
     .seq-info { background: var(--deep); display: flex; align-items: flex-start; justify-content: flex-end; padding: 1.5rem; }
 
     /* ── STATEMENT ── */
-    .statement { padding: 5rem 3.5rem; display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; border-top: 1px solid var(--rule); }
+    .statement { padding: 4rem 5rem; display: grid; grid-template-columns: 0.5fr 2fr; gap: 3rem; border-top: 1px solid var(--rule); }
     .statement-label { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); padding-top: 0.4rem; }
     .statement-body h2 { font-size: clamp(1.6rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.2; margin-bottom: 2.5rem; }
     .statement-body h2 em { font-style: italic; color: var(--ember); }
@@ -139,11 +133,11 @@
 	.statement-body p :last-of-type { padding-bottom:0; }
 
     /* ── CV ── */
-    .cv-section { padding: 5rem 3.5rem; border-top: 1px solid var(--rule); background: var(--void); }
+    .cv-section { padding: 4rem 5rem; display: grid; grid-template-columns: 0.5fr 2fr; gap: 3rem; border-top: 1px solid var(--rule); background: var(--void); }
     .sec-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 3.5rem; }
-    .sec-label { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); }
+    .sec-label { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); padding-top: 0.4rem; }
     .sec-title { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 300; }
-    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding-top: 1rem; justify-items: start;}
     .cv-col h3 { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ember); margin-bottom: 1.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--rule); }
     .cv-item { display: grid; grid-template-columns: 3.5rem 1fr; gap: 0.5rem; margin-bottom: 1.8rem; align-items: baseline; }
     .cv-year { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--dim); padding-top: 0.15rem; }
@@ -151,13 +145,13 @@
     .cv-detail span { font-size: 0.82rem; font-weight: 300; color: var(--dim); font-style: italic; }
 
     /* ── ADEQUATE LIGHT ── */
-    .zone-transition { height: 100px; background: linear-gradient(to bottom, var(--void), #f5f2ec); position: relative; border-top: 1px solid var(--rule); }
+    .zone-transition { height: 100px; background: linear-gradient(to bottom, var(--void), #f5f2ec); position: relative;  }
     .zone-label { position: absolute; bottom: 1.2rem; left: 3.5rem; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: #a09080; }
     .zone-exit { height: 80px; background: linear-gradient(to bottom, #f5f2ec, var(--void)); }
 
     #adequate-light { background: #f5f2ec; color: #1a1714; cursor: auto; position: relative; }
     
-	.al-intro { padding: 6rem 2rem 1rem; display: grid; grid-template-columns: 1fr 3fr; gap: 3rem; align-items: start; }
+	.al-intro { padding: 6rem 2rem 1rem; display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
     .al-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: #c8b99a; text-align:end; }
     .al-title { font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; line-height: 1; letter-spacing: -0.01em; color: #1a1714; text-align:end; }
     .al-title em { font-style: italic; color: var(--ember); text-align:end; }
@@ -186,9 +180,9 @@
     .al-cta-btn::after { content: '→'; }
 
     /* ── CONTACT ── */
-    .contact { padding: 6rem 3.5rem; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    .contact { padding: 4rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;}
     .contact-left h2 { font-size: clamp(2.5rem, 5vw, 6rem); font-weight: 300; line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 2rem; }
-    .contact-left h2 em { font-style: italic; color: var(--off); }
+    .contact-left h2 em { font-style: italic; color: var(--ember); }
 	.contact-left p { padding-bottom: 2rem; }
     .contact-right p { font-size: 0.92rem; color: var(--dim); line-height: 1.9; font-family: var(--mono); letter-spacing: 0.04em; margin-bottom: 2.5rem; max-width: 44ch; }
     .contact-items { display: flex; flex-direction: column; gap: 1rem; }
@@ -255,7 +249,7 @@
 			  .nav-al { color: var(--ember) !important; }
 
 			  /* Hero */
-			  .entry { padding: 0 1.5rem 3rem; min-height: 60svh; }
+			  .entry { padding: 0 1.5rem 3rem; min-height: 40svh; }
 			  .entry-index { margin-bottom: 1.5rem; font-size: 0.55rem; }
 			  .entry-headline { font-size: clamp(3rem, 14vw, 5rem); }
 			  .entry-meta { flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; }
@@ -267,11 +261,15 @@
 			  .h-rule-label:nth-child(5),
 			  .h-rule-line:nth-child(6) { display: none; }
 
+			  /* Main */
+			  main { max-width: 1600px; margin: 0 auto; padding: 0; }
+
 			  /* Work */
 			  .work { padding: 3rem 1.5rem; }
 			  .work-header { grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 2rem; }
 			  .work-meta-stack { text-align: left; }
-			  .work-sequence { grid-template-columns: 1fr; gap: 2px; }
+			  .work-sequence { grid-template-columns: 1fr; }
+			  .seq-frame img { min-height: 240px; }
 			  .seq-number, .seq-info { display: none; }
 			  .seq-col { gap: 2px; }
 			  .seq-frame img { min-height: 260px !important; }
@@ -285,9 +283,9 @@
 			  .statement-body p { font-size: 1rem; line-height: 1.8; }
 
 			  /* CV */
-			  .cv-section { padding: 3rem 1.5rem; }
+			  .cv-section { padding: 3rem 1.5rem; grid-template-columns: 1fr; gap:0;}
 			  .sec-head { flex-direction: column; gap: 0.5rem; margin-bottom: 2.5rem; }
-			  .cv-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+			  .cv-grid { grid-template-columns: 1fr; gap: 1rem; }
 
 			  /* Adequate Light zone */
 			  .zone-transition { height: 60px; }
@@ -331,8 +329,8 @@
       <span class="logo-name">Drew Death</span>
     </a>
     <nav id="main-nav" role="navigation">
-      <a href="#work" onclick="closeNav()">Work</a>
-      <a href="#statement" onclick="closeNav()">Statement</a>
+      <a href="#series" onclick="closeNav()">Series</a>
+      <a href="#about" onclick="closeNav()">About</a>
       <a href="#cv" onclick="closeNav()">CV</a>
       <a href="#adequate-light" class="nav-al" onclick="closeNav()">Adequate Light</a>
       <a href="#contact" onclick="closeNav()">Contact</a>
@@ -345,18 +343,16 @@
   <!-- HERO -->
   <section class="entry" id="home" role="main">
     <div class="entry-bg">
-      <img src="images/XP3D0528.avif" 
-	  srcset="images/XP3D0528-800.avif 800w, images/XP3D0528-1600.avif 1600w"
+      <img src="images/L1020287.avif" 
+	  srcset="images/L1020287-800.avif 800w, images/L1020287-1600.avif 1600w"
 	  sizes="100vw"
 	  fetchpriority="high" 
 	  alt="Drew Death — Photography">
     </div>
     <div class="entry-content">
-      <h1 class="entry-headline">Drew<br><em>Death</em></h1>
-      <p class="entry-index">Documentary &amp; Street Photographer</p>
+	<p class="entry-index">Documentary &amp; Street Photographer</p>
 	  <div class="entry-meta">
         <p class="entry-desc">Photography as a way of paying attention to the present moment.</p>
-       <div class="entry-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
       </div>
     </div>
   </section>
@@ -369,76 +365,46 @@
     <span class="h-rule-label">Leica M10-P</span>
   </div>
 
+<main>
+
   <!-- WORK -->
-  <section class="work" id="work" role="complementary">
+  <section class="work" id="series" role="complementary">
     <div class="work-header reveal">
-      <h2 class="work-series-name"><em>Thresholds</em><br>and Other Photographs</h2>
+      <h2 class="work-series-name">Selected<br><em>Series</em></h2>
       <div class="work-meta-stack">
-        <p>Series I</p><p>2021–2025</p>
+        <p>2021–2025</p>
       </div>
     </div>
-    <div class="work-sequence">
-      <div class="seq-number">01–06</div>
-      <div class="seq-col">
-        <div class="seq-frame reveal" onclick="openLb('Glasgow, 2024','001','images/L1020287.avif')">
-          <img src="images/L1020287.avif" 
-		  srcset="images/L1020287-800.avif 800w, images/L1020287-1600.avif 1600w"
-		  sizes="(max-width: 800px) 800px, (max-width: 1600px) 1600px"
-		  alt="Glasgow" 
-		  style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
-          <div class="seq-overlay"><span class="seq-overlay-title">Glasgow, 2024</span><span class="seq-overlay-num">001 / L1020287</span></div>
-        </div>
-        <div class="seq-frame wide reveal" onclick="openLb('Portland, 2022','002','images/XP3D0500.avif')">
-          <img src="images/XP3D0500.avif" 
-		  srcset="images/XP3D0500-800.avif 800w, images/XP3D0500-1600.avif 1600w"
-		  sizes="(max-width: 800px) 800px, (max-width: 1600px) 1600px"
-		  alt="Busking piano player" 
-		  style="width:100%;height:100%;min-height:180px;object-fit:cover;display:block;">
-          <div class="seq-overlay"><span class="seq-overlay-title">Portland, 2022</span><span class="seq-overlay-num">002 / XP3D0500</span></div>
-        </div>
-        <div class="seq-frame reveal" onclick="openLb('Perth, 2025','003','images/L1020516.avif')">
-          <img src="images/L1020516.avif" 
-		  srcset="images/L1020516-800.avif 800w, images/L1020516-1600.avif 1600w"
-		  sizes="(max-width: 800px) 800px, (max-width: 1600px) 1600px"
-		  alt="Perth Edsel" 
-		  style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
-          <div class="seq-overlay"><span class="seq-overlay-title">Perth, 2025</span><span class="seq-overlay-num">003 / L1020516</span></div>
-        </div>
-      </div>
-      <div class="seq-col">
-        <div class="seq-frame wide reveal" onclick="openLb('Chicago, 2021','004','images/DSCF5944.avif')">
-          <img src="images/DSCF5944.avif" 
-		  srcset="images/DSCF5944-800.avif 800w, images/DSCF5944-1600.avif 1600w"
-		  sizes="(max-width: 800px) 800px, (max-width: 1600px) 1600px"
-		  alt="Chicago schoolyard basketball" 
-		  style="width:100%;height:100%;min-height:180px;object-fit:cover;display:block;">
-          <div class="seq-overlay"><span class="seq-overlay-title">Chicago, 2021</span><span class="seq-overlay-num">004 / DSCF5944</span></div>
-        </div>
-        <div class="seq-frame reveal" onclick="openLb('Spain, 2023','005','images/R0001247.avif')">
-          <img src="images/R0001247.avif" 
-		  srcset="images/R0001247-800.avif 800w, images/R0001247-1600.avif 1600w"
-		  sizes="(max-width: 800px) 800px, (max-width: 1600px) 1600px"
-		  alt="Butcher" 
-		  style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
-          <div class="seq-overlay"><span class="seq-overlay-title">Spain, 2023</span><span class="seq-overlay-num">005 / R0001247</span></div>
-        </div>
-        <div class="seq-frame reveal" onclick="openLb('Portland, 2022','006','images/R0000349.avif')">
-          <img src="images/R0000349.avif" 
-		  srcset="images/R0000349-800.avif 800w, images/R0000349-1600.avif 1600w"
-		  sizes="(max-width: 800px) 800px, (max-width: 1600px) 1600px"
-		  alt="Portland Busker" 
-		  style="width:100%;height:100%;min-height:220px;object-fit:cover;display:block;">
-          <div class="seq-overlay"><span class="seq-overlay-title">Portland, 2022</span><span class="seq-overlay-num">006 / R0000349</span></div>
-        </div>
-      </div>
-      <div class="seq-info">
-        <span style="font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;color:var(--dim);writing-mode:vertical-rl;text-transform:uppercase;">Click to enlarge</span>
-      </div>
-    </div>
+<div class="work-sequence">
+  <div class="seq-frame reveal">
+    <a href="thresholds.html"><img src="images/XP3D0528.avif" srcset="images/XP3D0528-800.avif 800w, images/XP3D0528-1600.avif 1600w" sizes="33vw" alt="Portland">
+    <div class="seq-overlay"><span class="seq-overlay-title">Threshold</span><span class="seq-overlay-num">001 / XP3D0528</span></div></a>
+  </div>
+  <div class="seq-frame reveal" >
+    <a href="busking.html"><img src="images/XP3D0500.avif" srcset="images/XP3D0500-800.avif 800w, images/XP3D0500-1600.avif 1600w" sizes="33vw" alt="Busker">
+    <div class="seq-overlay"><span class="seq-overlay-title">Busking</span><span class="seq-overlay-num">002 / XP3D0500</span></div></a>
+  </div>
+  <div class="seq-frame reveal">
+    <a href="windows.html"><img src="images/L1020516.avif" srcset="images/L1020516-800.avif 800w, images/L1020516-1600.avif 1600w" sizes="33vw" alt="Perth Edsel">
+    <div class="seq-overlay"><span class="seq-overlay-title">Windows</span><span class="seq-overlay-num">003 / L1020516</span></div></a>
+  </div>
+  <div class="seq-frame reveal">
+    <a href="decline.html"><img src="images/DSCF5944.avif" srcset="images/DSCF5944-800.avif 800w, images/DSCF5944-1600.avif 1600w" sizes="33vw" alt="Chicago schoolyard basketball">
+    <div class="seq-overlay"><span class="seq-overlay-title">Decline</span><span class="seq-overlay-num">007 / DSCF5944</span></div></a>
+  </div>
+  <div class="seq-frame reveal">
+    <a href="skilled.html"><img src="images/R0001247.avif" srcset="images/R0001247-800.avif 800w, images/R0001247-1600.avif 1600w" sizes="33vw" alt="Fishmonger">
+    <div class="seq-overlay"><span class="seq-overlay-title">Skilled</span><span class="seq-overlay-num">005 / R0001247</span></div></a>
+  </div>
+  <div class="seq-frame reveal">
+    <a href="mono.html"><img src="images/L1006132.avif" srcset="images/L1006132-800.avif 800w, images/L1006132-1600.avif 1600w" sizes="33vw" alt="Camellia">
+    <div class="seq-overlay"><span class="seq-overlay-title">Mono</span><span class="seq-overlay-num">006 / L1006132</span></div></a>
+  </div>
+</div>
   </section>
 
   <!-- STATEMENT -->
-  <section class="statement" id="statement">
+  <section class="statement" id="about">
     <div class="statement-label reveal"><p>Statement</p></div>
     <div class="statement-body reveal">
     <h2>Photography begins<br><em>before the shutter.</em></h2>
@@ -456,7 +422,7 @@
     </div>
     <div class="cv-grid">
       <div class="cv-col reveal">
-        <h3>Selected Exhibitions</h3>
+        <h3>Select Exhibitions</h3>
         <div class="cv-item"><span class="cv-year">2026</span><div class="cv-detail"><strong>Festival of the Arts</strong><span>Perth, Scotland</span></div></div>
         <div class="cv-item"><span class="cv-year">2021</span><div class="cv-detail"><strong>Portland Street Collective</strong><span>Portland, Oregon</span></div></div>
       </div>
@@ -467,7 +433,7 @@
       </div>
     </div>
   </section> 
-
+</main>
   <!-- TRANSITION: dark → warm -->
   <div class="zone-transition"><span class="zone-label"></span></div>
 
@@ -493,7 +459,7 @@
 
   <!-- TRANSITION: warm → dark -->
   <div class="zone-exit"></div>
-
+<main>
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="contact-left reveal">
@@ -530,7 +496,7 @@
       </div>
     </div>
   </section>
-
+</main>
   <!-- FOOTER -->
   <footer role="contentinfo">
     <p>© 2026 Drew Death — All rights reserved</p>
@@ -570,11 +536,7 @@
       document.getElementById('nav-toggle').classList.remove('open');
       document.body.style.overflow = '';
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => document.getElementById('loader').classList.add('done'), 400);
-    });
-
+	
     // Scroll reveals
     const ro = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
@@ -583,31 +545,21 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-    // Header colour shift when entering/leaving warm zone
-    //const alSection = document.getElementById('contact');
-    //const hdr = document.getElementById('hdr');
-    //const zoneObserver = new IntersectionObserver((entries) => {
-    //  entries.forEach(e => {
-    //    hdr.classList.toggle('warm-hd', e.isIntersecting);
-    //    hdr.classList.toggle('dark-hd', !e.isIntersecting);
-    //  });
-    //}, { threshold: 0.05 });
-    //zoneObserver.observe(alSection);
 
     // Lightbox
-    // function openLb(title, num, src) {
-    //   document.getElementById('lb-title').textContent = title;
-    //   document.getElementById('lb-num').textContent = num + ' — Drew Death';
-    //   const frame = document.getElementById('lb-frame');
-    //   if (src) frame.innerHTML = '<img src="' + src + '" // style="max-width:100%;max-height:75vh;object-fit:contain;display:block;">';
-    //   document.getElementById('lb').classList.add('open');
-    //   document.body.style.overflow = 'hidden';
-    // }
-    // function closeLb() {
-     //  document.getElementById('lb').classList.remove('open');
-    //   document.body.style.overflow = '';
-    // }
-    // document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+    function openLb(title, num, src) {
+		document.getElementById('lb-title').textContent = title;
+		document.getElementById('lb-num').textContent = num + ' — Drew Death';
+		const frame = document.getElementById('lb-frame');
+		if (src) frame.innerHTML = '<img src="' + src + '" // style="max-width:100%;max-height:75vh;object-fit:contain;display:block;">';
+		document.getElementById('lb').classList.add('open');
+		document.body.style.overflow = 'hidden';
+    }
+    function closeLb() {
+		document.getElementById('lb').classList.remove('open');
+		document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
   </script>
 </body>
 </html>
